@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dgpvku6ktkrph"]
+
+[ext_resource type="Script" uid="uid://pyl0q3eawgag" path="res://scripts/game_manager.gd" id="1"]
+[ext_resource type="Script" uid="uid://cqgt3ssmf5wb2" path="res://scripts/spawner.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://0owbbx1cgx41" path="res://scenes/TerritoryZone.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/HUD.tscn" id="5"]
+[ext_resource type="Texture2D" uid="uid://5guwab81a5mt" path="res://imgs/galinheiro_background.png" id="6"]
+
+[sub_resource type="RectangleShape2D" id="WallsH"]
+size = Vector2(640, 16)
+
+[sub_resource type="RectangleShape2D" id="WallsV"]
+size = Vector2(16, 480)
+
+[node name="Main" type="Node2D" unique_id=959859180]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=728653513]
+z_index = -10
+position = Vector2(320, 240)
+texture = ExtResource("6")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1582292371]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="Walls" unique_id=1446879090]
+position = Vector2(320, 8)
+shape = SubResource("WallsH")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=1118721643]
+position = Vector2(320, 472)
+shape = SubResource("WallsH")
+
+[node name="Left" type="CollisionShape2D" parent="Walls" unique_id=1771825417]
+position = Vector2(8, 240)
+shape = SubResource("WallsV")
+
+[node name="Right" type="CollisionShape2D" parent="Walls" unique_id=1528907575]
+position = Vector2(632, 240)
+shape = SubResource("WallsV")
+
+[node name="Player" parent="." unique_id=1535532927 instance=ExtResource("3")]
+position = Vector2(320, 240)
+
+[node name="TerritoryZone" parent="." unique_id=658502272 instance=ExtResource("4")]
+position = Vector2(320, 240)
+
+[node name="HUD" parent="." unique_id=152943581 instance=ExtResource("5")]
+
+[node name="Spawner" type="Node" parent="." unique_id=668345460]
+script = ExtResource("2")
+
+[node name="GameManager" type="Node" parent="." unique_id=2092019246]
+script = ExtResource("1")
