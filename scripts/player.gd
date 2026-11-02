@@ -47,6 +47,7 @@ func _atacar() -> void:
 	get_tree().call_group("enemies", "receber_dano_em_raio",
 		global_position, raio_de_ataque, 1)
 	#espera o tempo de recarga do ataque para que a galinha possa perder vida novamente se tocada
+	#tecla de ataque= J
 	await get_tree().create_timer(recarga_do_ataque).timeout
 	pode_atacar = true
 
